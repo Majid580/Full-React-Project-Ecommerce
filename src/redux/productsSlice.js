@@ -14,8 +14,12 @@ const productsSlice = createSlice({
   reducers: {
     decreaseQuantityToProduct: (state, action) => {
       const item = state.items.find((p) => p.id === action.payload.id);
-      if (item && item.quantity > 0) {
-        item.quantity -= 1;
+      if (item) {
+        if (!item.quantity || item.quantity <= 1) {
+          item.quantity = 1; // Don't go below 1
+        } else {
+          item.quantity -= 1;
+        }
       }
     },
     addQuantityToProduct: (state, action) => {
@@ -38,7 +42,10 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items = action.payload.map((product) => ({
+          ...product,
+          quantity: 1,
+        }));
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;

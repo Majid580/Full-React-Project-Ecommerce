@@ -5,6 +5,7 @@ import {
   increaseQuantity,
   removeFromCart,
 } from "../redux/cartSlice";
+import { Link } from "react-router-dom";
 
 const CartDropdown = () => {
   const cart = useSelector((state) => state.cart);
@@ -94,12 +95,13 @@ const CartDropdown = () => {
               <span>Subtotal:</span>
               <span>${subtotal.toFixed(2)}</span>
             </div>
-            <a
+            <Link
+              to="/checkout"
               href="#"
               className="mt-4 block text-center bg-gray-700 text-white rounded-sm py-2 text-sm hover:bg-gray-600"
             >
               Checkout
-            </a>
+            </Link>
           </div>
         </>
       )}

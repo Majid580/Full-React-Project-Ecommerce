@@ -7,6 +7,7 @@ import {
   addQuantityToProduct,
   decreaseQuantityToProduct,
 } from "../redux/productsSlice";
+import { Link } from "react-router-dom";
 const ProductList = () => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.products);
@@ -24,12 +25,14 @@ const ProductList = () => {
 
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
             {items.map((product) => (
-              <a key={product.id} href={product.href} className="group">
-                <img
-                  alt={product.imageAlt}
-                  src={product.image}
-                  className="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8"
-                />
+              <div key={product.id}>
+                <Link to={`/productDetail/${product.id}`}>
+                  <img
+                    alt={product.imageAlt}
+                    src={product.image}
+                    className="aspect-square w-full rounded-lg bg-gray-200 object-cover group-hover:opacity-75 xl:aspect-7/8"
+                  />
+                </Link>
                 <h3 className="mt-4 text-sm text-gray-700">{product.title}</h3>
                 <p className="mt-1 text-lg font-medium text-gray-900">
                   {product.price}
@@ -39,7 +42,7 @@ const ProductList = () => {
                     onClick={() => {
                       dispatch(decreaseQuantityToProduct(product));
                     }}
-                    className="btn bg-amber-200 hover:bg-amber-600"
+                    className="btn bg-amber-400 hover:scale-104 hover:bg-amber-600"
                   >
                     -
                   </button>
@@ -48,7 +51,7 @@ const ProductList = () => {
                     onClick={() => {
                       dispatch(addQuantityToProduct(product));
                     }}
-                    className="btn bg-amber-200 hover:bg-amber-600"
+                    className="btn bg-amber-400 hover:scale-104 hover:bg-amber-600"
                   >
                     +
                   </button>
@@ -59,12 +62,12 @@ const ProductList = () => {
                       dispatch(addToCart(product));
                       console.log(cart);
                     }}
-                    className="btn btn-secondary flex w-full"
+                    className="btn btn-secondary flex w-full hover:scale-105 transition-all ease-in-out hover:bg-pink-800 "
                   >
                     Add To Cart
                   </button>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>

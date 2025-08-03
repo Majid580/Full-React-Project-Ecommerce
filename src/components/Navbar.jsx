@@ -1,13 +1,22 @@
 import React from "react";
 import CartDropdown from "./CartDropdown";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <Link to="/" className="btn btn-ghost text-xl">
+            Home
+          </Link>
+          <Link to="/cart" className="btn btn-ghost text-xl">
+            Cart
+          </Link>
+          <Link to="/checkout" className="btn btn-ghost text-xl">
+            Checkout
+          </Link>
         </div>
         <div className="flex-none">
           <div className="dropdown dropdown-end">

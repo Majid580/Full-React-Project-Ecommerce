@@ -1,12 +1,17 @@
 import React from "react";
 import ProductList from "./components/productList";
 import Header from "./components/Header";
+import AppRoutes from "./routes/AppRoutes";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <ProductList />
+      <main className="flex-grow">
+        <AppRoutes />
+      </main>
+      <Footer />
     </div>
   );
 };
