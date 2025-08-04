@@ -8,6 +8,7 @@ import {
   decreaseQuantityToProduct,
 } from "../redux/productsSlice";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 const ProductList = () => {
   const dispatch = useDispatch();
   const { items } = useSelector((state) => state.products);
@@ -41,6 +42,13 @@ const ProductList = () => {
                   <button
                     onClick={() => {
                       dispatch(decreaseQuantityToProduct(product));
+                      if (product.quantity > 1) {
+                        toast.success(
+                          `Quantity of ${product.title} decreased `
+                        );
+                      } else {
+                        toast.error("Quantity can not be less than 1");
+                      }
                     }}
                     className="btn bg-amber-400 hover:scale-104 hover:bg-amber-600"
                   >
@@ -50,6 +58,7 @@ const ProductList = () => {
                   <button
                     onClick={() => {
                       dispatch(addQuantityToProduct(product));
+                      toast.success(`Quantity of ${product.title} Increased`);
                     }}
                     className="btn bg-amber-400 hover:scale-104 hover:bg-amber-600"
                   >
@@ -60,7 +69,7 @@ const ProductList = () => {
                   <button
                     onClick={() => {
                       dispatch(addToCart(product));
-                      console.log(cart);
+                      toast.success(`${product.title} added to cart!`);
                     }}
                     className="btn btn-secondary flex w-full hover:scale-105 transition-all ease-in-out hover:bg-pink-800 "
                   >

@@ -6,6 +6,7 @@ import {
   removeFromCart,
 } from "../redux/cartSlice";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const CartDropdown = () => {
   const cart = useSelector((state) => state.cart);
@@ -51,6 +52,13 @@ const CartDropdown = () => {
                   <button
                     onClick={() => {
                       dispatch(decreaseQuantity(product));
+                      if (product.quantity > 1) {
+                        toast.success(
+                          `Quantity of ${product.title} decreased `
+                        );
+                      } else {
+                        toast.error("Quantity can not be less than 1");
+                      }
                     }}
                     className="btn bg-amber-200 hover:bg-amber-600"
                   >
@@ -60,6 +68,7 @@ const CartDropdown = () => {
                   <button
                     onClick={() => {
                       dispatch(increaseQuantity(product));
+                      toast.success(`Quantity of ${product.title} Increased`);
                     }}
                     className="btn bg-amber-200 hover:bg-amber-600"
                   >
@@ -67,7 +76,10 @@ const CartDropdown = () => {
                   </button>
                 </div>
                 <button
-                  onClick={() => dispatch(removeFromCart(product))}
+                  onClick={() => {
+                    dispatch(removeFromCart(product));
+                    toast.success(`${product.title} removed !!`);
+                  }}
                   className="text-gray-600 hover:text-red-600"
                 >
                   <span className="sr-only">Remove item</span>
