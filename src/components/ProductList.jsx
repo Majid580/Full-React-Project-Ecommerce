@@ -11,9 +11,13 @@ import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 const ProductList = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.products);
+  const { items, searchQuery, category } = useSelector(
+    (state) => state.products
+  );
   const cart = useSelector((state) => state.cart);
-
+  const filteredItems = items.filter((x) =>
+    x.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
@@ -25,7 +29,7 @@ const ProductList = () => {
           <h2 className="sr-only">Products</h2>
 
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {items.map((product) => (
+            {filteredItems.map((product) => (
               <div key={product.id}>
                 <Link to={`/productDetail/${product.id}`}>
                   <img

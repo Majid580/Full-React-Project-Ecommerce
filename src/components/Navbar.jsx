@@ -2,6 +2,8 @@ import React from "react";
 import CartDropdown from "./CartDropdown";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import InputSearchFilter from "./InputSearchFilter";
+import CategoryFilter from "./CategoryFilter";
 const Navbar = () => {
   const cart = useSelector((state) => state.cart);
   return (
@@ -17,8 +19,12 @@ const Navbar = () => {
           <Link to="/checkout" className="btn btn-ghost text-xl">
             Checkout
           </Link>
+          <div className="flex my-3 gap-5 ml-5">
+            <InputSearchFilter />
+            <CategoryFilter />
+          </div>
         </div>
-        <div className="flex-none">
+        <div className="flex-none ">
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}

@@ -10,8 +10,16 @@ const productsSlice = createSlice({
   name: "products",
   initialState: {
     items: [],
+    searchQuery: "",
+    category: "",
   },
   reducers: {
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+    },
+    setCatogory: (state, action) => {
+      state.category = action.payload;
+    },
     decreaseQuantityToProduct: (state, action) => {
       const item = state.items.find((p) => p.id === action.payload.id);
       if (item) {
@@ -53,6 +61,10 @@ const productsSlice = createSlice({
       });
   },
 });
-export const { addQuantityToProduct, decreaseQuantityToProduct } =
-  productsSlice.actions;
+export const {
+  addQuantityToProduct,
+  decreaseQuantityToProduct,
+  setSearchQuery,
+  setCatogory,
+} = productsSlice.actions;
 export default productsSlice.reducer;
