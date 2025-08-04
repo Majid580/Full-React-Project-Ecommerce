@@ -17,13 +17,14 @@ const CategoryFilter = () => {
       </button>
 
       <ul
-        className="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
+        className="dropdown menu  w-52 rounded-box bg-base-100 shadow-sm"
         popover="auto"
         id="popover-1"
         style={{ positionAnchor: "--anchor-1" } /* as React.CSSProperties */}
       >
         <li>
           <a
+            className="text-black"
             onClick={() => {
               dispatch(setCatogory(""));
               dispatch(setSearchQuery(""));
@@ -34,6 +35,7 @@ const CategoryFilter = () => {
         </li>
         <li>
           <a
+            className="text-black"
             onClick={(e) => {
               dispatch(setCatogory(e.target.innerText));
               dispatch(setSearchQuery(""));
@@ -44,6 +46,7 @@ const CategoryFilter = () => {
         </li>
         <li>
           <a
+            className="text-black"
             onClick={(e) => {
               dispatch(setCatogory(e.target.innerText));
               dispatch(setSearchQuery(""));
@@ -54,6 +57,7 @@ const CategoryFilter = () => {
         </li>
         <li>
           <a
+            className="text-black"
             onClick={(e) => {
               dispatch(setCatogory(e.target.innerText));
               dispatch(setSearchQuery(""));
@@ -64,6 +68,7 @@ const CategoryFilter = () => {
         </li>
         <li>
           <a
+            className="text-black"
             onClick={(e) => {
               dispatch(setCatogory(e.target.innerText));
               dispatch(setSearchQuery(""));
