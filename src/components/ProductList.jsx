@@ -15,8 +15,10 @@ const ProductList = () => {
     (state) => state.products
   );
   const cart = useSelector((state) => state.cart);
-  const filteredItems = items.filter((x) =>
-    x.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredItems = items.filter(
+    (x) =>
+      x.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (category === "" || x.category === category)
   );
   useEffect(() => {
     dispatch(fetchProducts());

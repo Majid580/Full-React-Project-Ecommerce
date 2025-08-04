@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { setCatogory } from "../redux/productsSlice";
+import { setCatogory, setSearchQuery } from "../redux/productsSlice";
 
 const CategoryFilter = () => {
   const dispatch = useDispatch();
@@ -26,6 +26,7 @@ const CategoryFilter = () => {
           <a
             onClick={() => {
               dispatch(setCatogory(""));
+              dispatch(setSearchQuery(""));
             }}
           >
             All Products
@@ -35,6 +36,7 @@ const CategoryFilter = () => {
           <a
             onClick={(e) => {
               dispatch(setCatogory(e.target.innerText));
+              dispatch(setSearchQuery(""));
             }}
           >
             men's clothing
@@ -44,6 +46,7 @@ const CategoryFilter = () => {
           <a
             onClick={(e) => {
               dispatch(setCatogory(e.target.innerText));
+              dispatch(setSearchQuery(""));
             }}
           >
             jewelery
@@ -53,6 +56,7 @@ const CategoryFilter = () => {
           <a
             onClick={(e) => {
               dispatch(setCatogory(e.target.innerText));
+              dispatch(setSearchQuery(""));
             }}
           >
             electronics
@@ -62,6 +66,7 @@ const CategoryFilter = () => {
           <a
             onClick={(e) => {
               dispatch(setCatogory(e.target.innerText));
+              dispatch(setSearchQuery(""));
             }}
           >
             women's clothing
